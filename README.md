@@ -1,1 +1,1 @@
-# Rock, Paper &amp Scissors
+# Rock, Paper & Scissors
