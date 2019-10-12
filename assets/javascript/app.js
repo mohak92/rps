@@ -1,3 +1,15 @@
+var myFirebase = new myFirebase("https://rock-paper-scissor-by-mohak.firebaseio.com");
+var usernameInput = document.querySelector("#username");
+var textInput = document.querySelector("#text");
+var postButton = document.querySelector("#post");
+
+postButton.addEventListener("click", function(){
+  var msgUser = usernameInput.value;
+  var msgText = textInput.value;
+  myFirebase.set(msgUser + " says: " + msgText);
+  textInput.value = "";
+});
+
 function showFeedback(text) {
     const feedback = document.querySelector(".feedback");
     feedback.classList.add("showItem");
@@ -23,6 +35,3 @@ function showFeedback(text) {
     $(".img-fluid").attr('src',"assets/images/question.png");
   });
 
-  $(document).ready(function () {
-    
-  });
