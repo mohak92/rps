@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Rock Paper &amp Scissor</title>
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Rock Paper &amp Scissor</h1>
+            <p class="lead">A multiplayer game with chat functinality.</p>
+            <p class="lead"><strong>Instructions: </strong> For Testing open this game in 2 different windows. Or if
+                you would like to play with someone give them the url</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="feedback alert alert-danger text-center" role="alert">
+                    This is a danger alert—check it out!
+                </div>
+                <button id="rock" type="button" class="btn btn-primary">Rock</button>
+                <br><br>
+                <button  id="paper" type="button" class="btn btn-primary">Paper</button>
+                <br><br>
+                <button  id="scissor" type="button" class="btn btn-primary">Scissor</button>
+                <br><br>
+                <button  id="reset" type="button" class="btn btn-danger">Reset</button>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/images/question.png" class="img-fluid" alt="Responsive image">
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <div id="results" class="col-md-12"></div>
+                <br>
+                <input id="username" type="text" placeholder="Name">
+                <input id="text" type="text" placeholder="message">
+                <button id="post" type="button" class="btn btn-warning">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>

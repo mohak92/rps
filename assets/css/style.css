@@ -1,0 +1,25 @@
+body {
+    background: #98FB98;
+}
+
+.btn-primary, .btn-danger {
+    width: 100%;
+}
+
+.feedback {
+    display: none;
+}
+
+.showItem {
+    display: block;
+}
+
+.jumbotron {
+    background: yellow;
+}
+
+#results {
+    background: white;
+    height: 200px;
+}
+
