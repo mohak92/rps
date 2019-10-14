@@ -220,15 +220,15 @@ $('#reset').click(function () {
 });
 
 $('#result').click(function () {
-  database.ref('rps').once('value').then(function(snapshot) {
-    player1Move =  snapshot.val().move;
-    user1 = snapshot.val().username;
+  database.ref('rps').on('value', async function(snapshot) {
+    player1Move =  await snapshot.val().move;
+    user1 = await snapshot.val().username;
     // ...
   });
   console.log("after click p1 " + player1Move);
-  database.ref('rps2').once('value').then(function(snapshot) {
-    player2Move =  snapshot.val().move;
-    user2 = snapshot.val().username;
+  database.ref('rps2').on('value', async function(snapshot) {
+    player2Move =  await snapshot.val().move;
+    user2 = await snapshot.val().username;
     // ...
   });
   console.log("after click p2 " + player2Move);
