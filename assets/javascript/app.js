@@ -28,7 +28,7 @@ postButton.addEventListener("click", function () {
   var msgText = textInput.value;
   if (msgUser === "") {
     showChatFeedback("Enter your name to chat");
-  } if (msgText === "") {
+  } else if (msgText === "") {
     showChatFeedback("Message cannot be empty");
   } else {
     database.ref('chat').push(Chat = { username: msgUser, text: msgText });
