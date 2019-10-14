@@ -41,6 +41,11 @@ var beginListening = function(){
 
 beginListening();
 
+$('#clear-chat').click(function(){
+  $("#results").empty();
+  database.ref().child('chat').remove();
+});
+
 function showFeedback(text) {
     const feedback = document.querySelector(".feedback");
     feedback.classList.add("showItem");
@@ -52,21 +57,38 @@ function showFeedback(text) {
 
   $('#rock').click(function(){
     $(".img-fluid").attr('src',"assets/images/rock.jpg");
-    database.ref('rps').push({move:"rock"});
+    var user = usernameInput.value;
+    database.ref('rps').push({username:user, move:"rock"});
   });
 
   $('#paper').click(function(){
     $(".img-fluid").attr('src',"assets/images/paper.jpg");
-    database.ref('rps').push({move:"paper"});
+    var user = usernameInput.value;
+    database.ref('rps').push({username:user, move:"paper"});
   });
 
   $('#scissor').click(function(){
     $(".img-fluid").attr('src',"assets/images/scissor.jpg");
-    database.ref('rps').push({move:"scissor"});
+    var user = usernameInput.value;
+    database.ref('rps').push({username:user, move:"scissor"});
+  });
+
+  $('#result').click(function(){
+    database.ref('rps').once("child_added", function(snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      console.log(snapshot.val().username);
+
+    }, function(errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   });
 
   $('#reset').click(function(){
     $(".img-fluid").attr('src',"assets/images/question.png");
-    
+    database.ref().child('rps').remove();
   });
-
