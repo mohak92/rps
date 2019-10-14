@@ -16,42 +16,66 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Rock Paper &amp Scissor</h1>
+            <h3>Before Playing please decide who is Player 1 and who is Player 2, Click on result to see who won after
+                both players make a move!</h3>
             <p class="lead">A multiplayer game with chat functinality.</p>
             <p class="lead"><strong>Instructions: </strong> For Testing open this game in 2 different windows. Or if
                 you would like to play with someone give them the url.
-            <strong>Always click clear after each round of game!</strong></p>
+                <strong>Always click clear after each round of game!</strong></p>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="feedback alert alert-danger text-center" role="alert">
-                    This is a danger alert—check it out!
-                </div>
-                <input id="username" type="text" placeholder="Name">
+            <div class="col-md-6">
+                <h2>Player 1</h2>
+                <input id="username1" type="text" placeholder="Name">
                 <br><br>
                 <button id="rock" type="button" class="btn btn-primary">Rock</button>
                 <br><br>
-                <button  id="paper" type="button" class="btn btn-primary">Paper</button>
+                <button id="paper" type="button" class="btn btn-primary">Paper</button>
                 <br><br>
-                <button  id="scissor" type="button" class="btn btn-primary">Scissor</button>
+                <button id="scissor" type="button" class="btn btn-primary">Scissor</button>
                 <br><br>
-                <button  id="result" type="button" class="btn btn-primary">Result</button>
-                <br><br>
-                <button  id="reset" type="button" class="btn btn-danger">Reset</button>
             </div>
 
+            <div class="col-md-6">
+                <h2>Player 2</h2>
+                <input id="username2" type="text" placeholder="Name">
+                <br><br>
+                <button id="rock2" type="button" class="btn btn-primary">Rock</button>
+                <br><br>
+                <button id="paper2" type="button" class="btn btn-primary">Paper</button>
+                <br><br>
+                <button id="scissor2" type="button" class="btn btn-primary">Scissor</button>
+                <br><br>
+            </div>
+            <div class="col-md-12">
+                <button id="result" type="button" class="btn btn-danger">Result</button>
+                <br><br>
+                <button id="reset" type="button" class="btn btn-danger">Reset</button>
+            </div>
         </div>
         <br>
+        <div class="feedback alert alert-danger text-center" role="alert">
+                This is a danger alert—check it out!
+        </div>
         <div class="row">
             <div class="col-md-6">
-                <img src="assets/images/question.png" class="img-fluid" alt="Responsive image">
+                <img id="player1" src="assets/images/question.png" class="img-fluid" alt="Responsive image">
                 <hr>
             </div>
             <div class="col-md-6">
+                <img id="player2" src="assets/images/question.png" class="img-fluid" alt="Responsive image">
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <div class="feedback2 alert alert-danger text-center" role="alert">
+                    This is a danger alert—check it out!
+                </div>
                 <div id="results" class="col-md-12"></div>
                 <br>
+                <input id="username" type="text" placeholder="Name">
                 <input id="text" type="text" placeholder="message">
                 <button id="post" type="button" class="btn btn-warning">Send</button>
                 <button id="clear-chat" type="button" class="btn btn-warning">Clear Chat</button>

@@ -14,17 +14,29 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 var usernameInput = document.querySelector("#username");
+var usernameInput1 = document.querySelector("#username1");
+var usernameInput2 = document.querySelector("#username2");
 var textInput = document.querySelector("#text");
 var postButton = document.querySelector("#post");
+var player1Move;
+var player1Move2;
+var user1;
+var user2;
 
-postButton.addEventListener("click", function(){
+postButton.addEventListener("click", function () {
   var msgUser = usernameInput.value;
   var msgText = textInput.value;
-  database.ref('chat').push(Chat = {username:msgUser, text:msgText});
-  textInput.value = "";
+  if (msgUser === "") {
+    showChatFeedback("Enter your name to chat");
+  } if (msgText === "") {
+    showChatFeedback("Message cannot be empty");
+  } else {
+    database.ref('chat').push(Chat = { username: msgUser, text: msgText });
+    textInput.value = "";
+  }
 });
 
-var beginListening = function(){
+var beginListening = function () {
   database.ref('chat').on('child_added', function (snapshot) {
     var msg = snapshot.val();
     var msgUsernameElement = document.createElement("b");
@@ -41,54 +53,192 @@ var beginListening = function(){
 
 beginListening();
 
-$('#clear-chat').click(function(){
+$('#clear-chat').click(function () {
   $("#results").empty();
   database.ref().child('chat').remove();
 });
 
-function showFeedback(text) {
-    const feedback = document.querySelector(".feedback");
-    feedback.classList.add("showItem");
-    feedback.innerHTML = `<p>${text}</p>`;
-    setTimeout(() => {
-      feedback.classList.remove("showItem");
-    }, 3000);
-  }
+function showChatFeedback(text) {
+  const feedback = document.querySelector(".feedback2");
+  feedback.classList.add("showItem");
+  feedback.innerHTML = `<p>${text}</p>`;
+  setTimeout(() => {
+    feedback.classList.remove("showItem");
+  }, 3000);
+}
 
-  $('#rock').click(function(){
-    $(".img-fluid").attr('src',"assets/images/rock.jpg");
-    var user = usernameInput.value;
-    database.ref('rps').push({username:user, move:"rock"});
-  });
+function showGameFeedback(text) {
+  const feedback = document.querySelector(".feedback");
+  feedback.classList.add("showItem");
+  feedback.innerHTML = `<p>${text}</p>`;
+  setTimeout(() => {
+    feedback.classList.remove("showItem");
+  }, 3000);
+}
 
-  $('#paper').click(function(){
-    $(".img-fluid").attr('src',"assets/images/paper.jpg");
-    var user = usernameInput.value;
-    database.ref('rps').push({username:user, move:"paper"});
-  });
-
-  $('#scissor').click(function(){
-    $(".img-fluid").attr('src',"assets/images/scissor.jpg");
-    var user = usernameInput.value;
-    database.ref('rps').push({username:user, move:"scissor"});
-  });
-
-  $('#result').click(function(){
-    database.ref('rps').once("child_added", function(snapshot) {
+$('#rock').click(function () {
+  $("#player1").attr('src', "assets/images/rock.jpg");
+  user1 = usernameInput1.value;
+  if (user1 == "") {
+    showGameFeedback("Player 1 enter your name");
+  } else {
+    database.ref('rps').set({ username: user1, move: "rock" });
+    database.ref('rps').once("value", function (snapshot) {
 
       // Print the initial data to the console.
       console.log(snapshot.val());
 
       // Log the value of the various properties
       console.log(snapshot.val().move);
-      console.log(snapshot.val().username);
+      player1Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
 
-    }, function(errorObject) {
+    }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-  });
+  }
+});
 
-  $('#reset').click(function(){
-    $(".img-fluid").attr('src',"assets/images/question.png");
-    database.ref().child('rps').remove();
-  });
+$('#paper').click(function () {
+  $("#player1").attr('src', "assets/images/paper.jpg");
+  user1 = usernameInput1.value;
+  if (user1 == "") {
+    showGameFeedback("Player 1 enter your name");
+  } else {
+    database.ref('rps').set({ username: user1, move: "paper" });
+    database.ref('rps').once("value", function (snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      player1Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+});
+
+$('#scissor').click(function () {
+  $("#player1").attr('src', "assets/images/scissor.jpg");
+  user1 = usernameInput1.value;
+  if (user1 == "") {
+    showGameFeedback("Player 1 enter your name");
+  } else {
+    database.ref('rps').set({ username: user1, move: "scissor" });
+    database.ref('rps').once("value", function (snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      player1Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+});
+
+$('#rock2').click(function () {
+  $("#player2").attr('src', "assets/images/rock.jpg");
+  user2 = usernameInput2.value;
+  if (user2 == "") {
+    showGameFeedback("Player 2 enter your name");
+  } else {
+    database.ref('rps2').set({ username: user2, move: "rock" });
+    database.ref('rps2').once("value", function (snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      player2Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+});
+
+$('#paper2').click(function () {
+  $("#player2").attr('src', "assets/images/paper.jpg");
+  user2 = usernameInput2.value;
+  if (user2 == "") {
+    showGameFeedback("Player 2 enter your name");
+  } else {
+    database.ref('rps2').set({ username: user2, move: "paper" });
+    database.ref('rps2').once("value", function (snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      player2Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+});
+
+$('#scissor2').click(function () {
+  $("#player2").attr('src', "assets/images/scissor.jpg");
+  user2 = usernameInput2.value;
+  if (user2 == "") {
+    showGameFeedback("Player 2 enter your name");
+  } else {
+    database.ref('rps2').set({ username: user2, move: "scissor" });
+    database.ref('rps2').once("value", function (snapshot) {
+
+      // Print the initial data to the console.
+      console.log(snapshot.val());
+
+      // Log the value of the various properties
+      console.log(snapshot.val().move);
+      player2Move = snapshot.val().move;
+      //console.log(snapshot.val().username);
+
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+});
+
+$('#reset').click(function () {
+  database.ref().child('rps').remove();
+  database.ref().child('rps2').remove();
+});
+
+$('#result').click(function () {
+  if (player1Move == undefined) {
+    showGameFeedback("Player 1 did not make a move");
+  } else if (player2Move == undefined) {
+    showGameFeedback("Player 2 did not make a move");
+  } else {
+    console.log("Inside Result " + user1 + " " + player1Move);
+    console.log("Inside Result " + user2 + " " + player2Move);
+    if((player1Move == "rock" && player2Move == "scissor")
+    || (player1Move == "paper" && player2Move == "rock")
+    || (player1Move == "scissor" && player2Move == "paper")){
+      showGameFeedback(user1 + " selected " + player1Move + " " + user2 + " selected " + player2Move + " " + user1 + " won the game");
+    } else if ((player1Move == "scissor" && player2Move == "rock")
+    || (player1Move == "rock" && player2Move == "paper")
+    || (player1Move == "paper" && player2Move == "scissor")) {
+      showGameFeedback(user1 + " selected " + player1Move + " " + user2 + " selected " + player2Move + " " + user2 + " won the game");
+    }else if((player1Move == "scissor" && player2Move == "scissor")
+    || (player1Move == "rock" && player2Move == "rock")
+    || (player1Move == "paper" && player2Move == "paper")) {
+      showGameFeedback(user1 + " selected " + player1Move + " " + user2 + " selected " + player2Move + " " + "It's a draw");
+    }
+  }
+});
