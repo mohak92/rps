@@ -220,10 +220,22 @@ $('#reset').click(function () {
 });
 
 $('#result').click(function () {
-  if (player1Move == undefined) {
-    showGameFeedback("Player 1 did not make a move");
-  } else if (player2Move == undefined) {
-    showGameFeedback("Player 2 did not make a move");
+  database.ref('rps').once('value').then(function(snapshot) {
+    player1Move =  snapshot.val().move;
+    user1 = snapshot.val().username;
+    // ...
+  });
+  console.log("after click p1 " + player1Move);
+  database.ref('rps2').once('value').then(function(snapshot) {
+    player2Move =  snapshot.val().move;
+    user2 = snapshot.val().username;
+    // ...
+  });
+  console.log("after click p2 " + player2Move);
+  if (player1Move == undefined || user1 == undefined) {
+    showGameFeedback("Player 1 did not make a move or click result again");
+  } else if (player2Move == undefined || user1 == undefined) {
+    showGameFeedback("Player 2 did not make a move or click result again");
   } else {
     console.log("Inside Result " + user1 + " " + player1Move);
     console.log("Inside Result " + user2 + " " + player2Move);
